@@ -76,10 +76,43 @@ body {
 }
 input:checked+.slider{background-color:#dfebd5;}
 input:checked+.slider:before{transform:translateX(26px);}
+
+.collapsible1 {
+  background-color: white;
+  color: black;
+  cursor: pointer;
+  padding: 5px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 22px;
+}
+
+.active, .collapsible1:hover {
+  background-color: white;
+}
+
+.collapsible1:after {
+  content: '\002B';
+  color: black;
+  font-weight: bold;
+  float: right;
+  margin-left: 5px;
+}
+
+.active:after {
+  content: "\2212";
+}
+	
 </style>
 </head>
 <body>
 <div id='fifteen'></div> <!--element "fifteen" in which the game will take place-->
+
+<button class="collapsible1"><font color="blue">1: </font></button>
+<div class="content">
+	
 <div style='position:fixed;top:0;left:0;box-shadow:0px 2px 24px rgba(110,95,165,0.25);border-radius:0 0 16px 0;background-color:#fff;width:196px;'>
     <div style="display:none;position:fixed;"><img id="art" src=""/><a id="dwonload"></a><input id="img_file" type="file" accept="image/png,image/gif,image/jpeg,image/webp"/></div>
     <div style="overflow:auto;width:180px;max-height:100vh;height:100%;padding:8px;">
@@ -151,19 +184,23 @@ input:checked+.slider:before{transform:translateX(26px);}
     </div>
 </div>
 
-<!--Adsterra 300x250 Banner-->
-<center>
-<script type="text/javascript">
-	atOptions = {
-		'key' : 'e5ae577d5006cc9cb63f262f5c1cd1d4',
-		'format' : 'iframe',
-		'height' : 250,
-		'width' : 300,
-		'params' : {}
-	};
-	document.write('<scr' + 'ipt type="text/javascript" src="//www.topcreativeformat.com/e5ae577d5006cc9cb63f262f5c1cd1d4/invoke.js"></scr' + 'ipt>');
+</div>
+<script>
+var coll = document.getElementsByClassName("collapsible1");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.maxHeight){
+      content.style.maxHeight = null;
+    } else {
+      content.style.maxHeight = content.scrollHeight + "px";
+    } 
+  });
+}
 </script>
-</center>
 
 <script>
 var setup={
