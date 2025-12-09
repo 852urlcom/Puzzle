@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Fifteen puzzle maker</title>
+<title>Sliding Puzzle</title>
 <link rel="shortcut icon" href="icon.jpg" type="image/x-icon">
 <meta content="#c4cebb" name="theme-color" charset="UTF-8">
-<meta name="description" content="A simple implementation of the classic mini-game Fifteen Sliding Puzzle, using HTML5 DOM document elements and without using Canvas or third party libraries.">
-<meta name="keywords" content="15Puzzle, js, Open Source, HTML5, Sliding, web, base">
-<meta name="author" content="Kirill Live">
+<meta name="description" content="Make own sliding puzzle game.">
+<meta name="keywords" content="Puzzle, Sliding, Free, Online, HTML5">
+<meta name="author" content="Mark Able">
 <style>
 body {
     height: 100vh;
@@ -14,10 +14,10 @@ body {
     display: grid;
     align-content: center;
     justify-content: center;background-color:#dfebd5;
-}	
+}
 *{
 	font-family:Arial;
-    font-size:12px;
+    font-size:32px;
 	border-collapse:collapse;
 	border:none;
 	margin:0;
@@ -34,7 +34,7 @@ body {
 .input_text{
 	border:0;
 	font-family:Arial;
-	font-size:12px;
+	font-size:32px;
 	-webkit-appearance:none;
 	border-bottom:1px solid #c4cebb;
 	background-color:transparent;
@@ -43,13 +43,13 @@ body {
 	width:100%;
 	-webkit-touch-callout:text;-webkit-user-select:text;-khtml-user-select:text;-moz-user-select:text;-ms-user-select:text;user-select:text;
 }
-.button{border-radius:8px;width:100%;height:32px;background-color:#c4cebb;display:grid;align-content: center;justify-content: center;cursor:pointer;}
+.button{border-radius:8px;width:100%;height:42px;font-size:32px;background-color:#c4cebb;display:grid;align-content: center;justify-content: center;cursor:pointer;}
 .button:hover{background-color:#dfebd5;}
 .switch {
   position:relative;
   display:inline-block;
-  width:50px;
-  height:24px;
+  width:64px;
+  height:32px;
 }
 .switch input{opacity:0;width:0;height:0;}
 .slider{
@@ -66,8 +66,8 @@ body {
 .slider:before{
   position:absolute;
   content:"";
-  height:18px;
-  width:18px;
+  height:26px;
+  width:26px;
   left:3px;
   bottom:3px;
   background-color:#fff;
@@ -76,23 +76,82 @@ body {
 }
 input:checked+.slider{background-color:#dfebd5;}
 input:checked+.slider:before{transform:translateX(26px);}
+    
+.sidenav {
+  height: 500;
+  width: 380;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #fff;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 40px;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 8px;
+  text-decoration: none;
+  font-size: 25px;
+  color: black;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: grey;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+#main {
+  transition: margin-left .5s;
+  padding: 16px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
 </style>
 </head>
 <body>
-<div id='fifteen'></div><!--element "fifteen" in which the game will take place-->
-<div style='position:fixed;top:0;left:0;box-shadow:0px 2px 24px rgba(110,95,165,0.25);border-radius:0 0 16px 0;background-color:#fff;width:196px;'>
+<div id="main" style="position:fixed;top:0;left:0;font-size:32px;cursor:pointer" onclick="openNav()">&#9776; Open</div>   
+	<div id='fifteen'></div> <!--element "fifteen" in which the game will take place-->
+<div id="mySidenav" class="sidenav"><a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    
+<div style='box-shadow:0px 2px 24px rgba(110,95,165,0.25);border-radius:0 0 0px 0;background-color:#fff;width:380px;'>
     <div style="display:none;position:fixed;"><img id="art" src=""/><a id="dwonload"></a><input id="img_file" type="file" accept="image/png,image/gif,image/jpeg,image/webp"/></div>
-    <div style="overflow:auto;width:180px;max-height:100vh;height:100%;padding:8px;">
+    <div style="overflow:auto;width:360px;max-height:100vh;height:100%;padding:8px;">
         <table style="border-collapse:collapse;" border="1">
         <tbody>
         <tr>
-        <td style="height:48px;" colspan="2"><div class="button" onclick="img_file.click();">Load img file</div></td>
+        <td style="height:50px;" colspan="2"><div class="button" onclick="img_file.click();">Load img file</div>
+		<form runat="server">
+    		<center><img id="blah" src="#" alt="" width=350px/></center>
+		</form>
+		<script>
+		img_file.onchange = evt => {
+  			const [file] = img_file.files
+  			if (file) {
+    		blah.src = URL.createObjectURL(file)
+  			}
+		}
+		</script>
+        </td>
         </tr>
         <tr>
-        <td style="width:90px;height:34px;padding-left:8px;" align="left">Difficulty</td>
+        <td style="width:175px;height:50px;padding-left:8px;" align="left">Difficulty</td>
         <td><input onchange="setup.puzzle_fifteen.diff=this.value;fifteen_update();" value="300" class="input_text" type="text"></td>
         </tr>
-        <tr><td style="height:34px;padding-left:8px;" align="left" colspan="2">Number of movements of the slots for shuffling pictures (i.e. 1=very easy)</td></tr>
+        <tr><td style="height:40px;padding-left:8px;font-size:22px;" align="left" colspan="2">(10=very easy, 99999=very hard)</td></tr>
         <tr>
         <td style="height:0px;padding-right:8px;" align="right"></td>
         <td><div id="width" onchange="setup.puzzle_fifteen.size[0]=parseInt(this.value);fifteen_update();" value="1024"></div></td>
@@ -108,11 +167,14 @@ input:checked+.slider:before{transform:translateX(26px);}
         </td>
         </tr>
         <tr>
-        <td style="width:90px;height:34px;padding-left:8px;" align="left">Width grid no.</td>
+            <td style="height:50px;padding-left:8px;" align="left"><p><br></p><u>Grid lines</u></td>
+        </tr>
+        <tr>
+        <td style="width:175px;height:50px;padding-left:8px;" align="left">Rows</td>
         <td><input id="grid_width" onchange="setup.puzzle_fifteen.grid[0]=parseInt(this.value);fifteen_update();" value="3" class="input_text" type="text"></td>
         </tr>
         <tr>
-        <td style="width:90px;height:34px;padding-left:8px;" align="left">Height grid no.</td>
+        <td style="width:175px;height:50px;padding-left:8px;" align="left">Columns</td>
         <td><input id="grid_height" onchange="setup.puzzle_fifteen.grid[1]=parseInt(this.value);fifteen_update();" value="4" class="input_text" type="text"></td>
         </tr>
         <tr>
@@ -120,14 +182,14 @@ input:checked+.slider:before{transform:translateX(26px);}
         <td ><div onchange="setup.puzzle_fifteen.time=this.value;fifteen_update();" value="0.5"></div></td>
         </tr>
         <tr>
-        <td style="height:34px;padding-left:8px;" align="left">Numbers</td>
-        <td align="center"><label class="switch">
+            <td style="height:50px;padding-left:8px;" align="left" colspan="2"><p><br></p>Show numbers&nbsp
+        <label class="switch">
             <input type="checkbox" onchange="setup.puzzle_fifteen.number=this.checked;fifteen_update();">
             <span class="slider round"></span>
         </label></td>
         </tr>
         <tr>
-        <td style="height:34px;padding-left:8px;" align="left">Puzzle fill</td>
+            <td style="height:50px;padding-left:8px;" align="left">Puzzle fill</td>
         <td align="center"><label class="switch">
             <input type="checkbox" onchange="setup.puzzle_fifteen.fill=this.checked;if(!this.checked){window.removeEventListener('resize',fifteen_resize,true);f.style.transform='scale(1)'};fifteen_update();" checked>
             <span class="slider round"></span>
@@ -138,18 +200,30 @@ input:checked+.slider:before{transform:translateX(26px);}
         <td><div id="slot_style" onchange="setup.puzzle_fifteen.style=this.value;fifteen_update();"></div></td>
         </tr>
         <tr>
-        <td style="height:48px;" colspan="2"><div class="button" onclick="fifteen_update();">Refresh</div></td>
+        <td style="height:72px;" colspan="2"><p><br></p><div class="button" onclick="fifteen_update();">Refresh</div></td>
         </tr>
         <tr>
-        <td style="height:48px;" colspan="2"><div class="button" onclick="fifteen_build();">Create HTML file for offline play</div></td>
+        <td style="height:72px;" colspan="2"><div class="button" onclick="fifteen_build();">Create HTML file</div></td>
         </tr>
         <tr><td style="height:16px;" colspan="2">    
         </td></tr>
         </tbody>
         </table>
     </div>
+	</div>
 </div>
-		
+<script>
+function openNav() {
+  document.getElementById("mySidenav").style.width = "380px";
+  document.getElementById("main").style.marginLeft = "380px";
+}
+
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+  document.getElementById("main").style.marginLeft= "0";
+}
+</script>
+    
 <script>
 var setup={
      puzzle_fifteen:{
