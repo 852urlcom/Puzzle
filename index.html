@@ -79,8 +79,11 @@ input:checked+.slider:before{transform:translateX(26px);}
 </style>
 </head>
 <body>
-<div id='fifteen'></div> <!--element "fifteen" in which the game will take place-->
-<div style='position:fixed;top:0;left:-196;box-shadow:0px 2px 24px rgba(110,95,165,0.25);border-radius:0 0 16px 0;background-color:#fff;width:196px;'>
+<div id="fullscreen-container">
+  <div id='fifteen'></div> <!--element "fifteen" in which the game will take place-->
+</div>
+<button id="toggle-fullscreen-btn">Toggle Fullscreen</button>
+<div style='position:fixed;top:0;left:0;box-shadow:0px 2px 24px rgba(110,95,165,0.25);border-radius:0 0 16px 0;background-color:#fff;width:196px;'>
     <div style="display:none;position:fixed;"><img id="art" src=""/><a id="dwonload"></a><input id="img_file" type="file" accept="image/png,image/gif,image/jpeg,image/webp"/></div>
     <div style="overflow:auto;width:180px;max-height:100vh;height:100%;padding:8px;">
         <table style="border-collapse:collapse;" border="1">
@@ -150,7 +153,40 @@ input:checked+.slider:before{transform:translateX(26px);}
         </table>
     </div>
 </div>
+	
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const fullscreenContainer = document.getElementById('fullscreen-container');
+  const toggleFullscreenBtn = document.getElementById('toggle-fullscreen-btn');
 
+  toggleFullscreenBtn.addEventListener('click', () => {
+    if (!document.fullscreenElement) {
+      // Enter fullscreen mode
+      if (fullscreenContainer.requestFullscreen) {
+        fullscreenContainer.requestFullscreen();
+      } else if (fullscreenContainer.webkitRequestFullscreen) { /* Safari */
+        fullscreenContainer.webkitRequestFullscreen();
+      } else if (fullscreenContainer.mozRequestFullScreen) { /* Firefox */
+        fullscreenContainer.mozRequestFullScreen();
+      } else if (fullscreenContainer.msRequestFullscreen) { /* IE11 */
+        fullscreenContainer.msRequestFullscreen();
+      }
+    } else {
+      // Exit fullscreen mode
+      if (document.exitFullscreen) {
+        document.exitFullscreen();
+      } else if (document.webkitExitFullscreen) { /* Safari */
+        document.webkitExitFullscreen();
+      } else if (document.mozCancelFullScreen) { /* Firefox */
+        document.mozCancelFullScreen();
+      } else if (document.msExitFullscreen) { /* IE11 */
+        document.msExitFullscreen();
+      }
+    }
+  });
+});
+</script>
+	
 <script>
 var setup={
      puzzle_fifteen:{
