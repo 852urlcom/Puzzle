@@ -87,7 +87,7 @@ input:checked+.slider:before{transform:translateX(26px);}
   background-color: #fff;
   overflow-x: hidden;
   transition: 0.5s;
-  padding-top: 40px;
+  padding-top: 55px;
 }
 
 .sidenav a {
@@ -123,9 +123,9 @@ input:checked+.slider:before{transform:translateX(26px);}
 </style>
 </head>
 <body>
-<div id="main" style="position:fixed;top:0;left:0;font-size:32px;cursor:pointer" onclick="openNav()">&#9776; Open</div>   
+<div id="main" style="position:fixed;top:0;left:0;z-index: 1;font-size:32px;cursor:pointer" onclick="openNav()">&#9776; Open</div>   
 	<div id='fifteen'></div> <!--element "fifteen" in which the game will take place-->
-<div id="mySidenav" class="sidenav"><a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+<div id="mySidenav" class="sidenav"><a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times; Close</a>
     
 <div style='box-shadow:0px 2px 24px rgba(110,95,165,0.25);border-radius:0 0 0px 0;background-color:#fff;width:380px;'>
     <div style="display:none;position:fixed;"><img id="art" src=""/><a id="dwonload"></a><input id="img_file" type="file" accept="image/png,image/gif,image/jpeg,image/webp"/></div>
@@ -205,7 +205,7 @@ input:checked+.slider:before{transform:translateX(26px);}
         <tr>
         <td style="height:72px;" colspan="2"><div class="button" onclick="fifteen_build();">Create HTML file</div></td>
         </tr>
-        <tr><td style="height:16px;" colspan="2">    
+        <tr><td style="height:60px;" colspan="2">    
         </td></tr>
         </tbody>
         </table>
