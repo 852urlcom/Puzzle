@@ -123,6 +123,7 @@ input:checked+.slider:before{transform:translateX(26px);}
 </style>
 </head>
 <body>
+<div id="main" style="position:fixed;top:0;left:0;z-index: 1;font-size:32px;cursor:pointer" onclick="openNav()">&#9776; Panel</div> 
 <div id='fifteen'></div> <!--element "fifteen" in which the game will take place-->
 	
 <div id="mySidenav" class="sidenav"><a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times; Close</a>
@@ -211,17 +212,14 @@ input:checked+.slider:before{transform:translateX(26px);}
     </div>
 	</div>
 </div>
-	
-<div id="main" style="position:fixed;top:0;left:0;z-index: 1;font-size:32px;cursor:pointer" onclick="openNav()">&#9776; Panel</div> 
+
 <script>
 function openNav() {
   document.getElementById("mySidenav").style.width = "380px";
-  document.getElementById("main").style.marginLeft = "380px";
 }
 
 function closeNav() {
   document.getElementById("mySidenav").style.width = "0";
-  document.getElementById("main").style.marginLeft= "0";
 }
 </script>
     
