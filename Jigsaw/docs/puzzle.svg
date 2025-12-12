@@ -175,11 +175,11 @@
   <g class="ui tl">
     <g id="hud">
       <rect x="0" y="0" width="450" height="30" stroke-width="0" fill="url(#menufade)" pointer-events="none" />
-      <text id="new-game" class="button noscript-hidden" x="10" y="20">New Game</text>
-      <text id="save-game" class="button noscript-hidden" x="110" y="20">Save Progress</text>
-      <text class="noscript-warn" x="10" y="20">Please open in browser to play!</text><br />
-      <text id="time" x="10" y="45">--:--</text>
-    </g>
+      <text id="time" x="10" y="20">--:--</text>
+      <text id="new-game" class="button noscript-hidden" x="80" y="20">New Game</text>
+      <text id="save-game" class="button noscript-hidden" x="180" y="20">Save Progress</text>
+      <text class="noscript-warn" x="80" y="20">Please open in browser to play!</text>
+  </g>
   </g>
   <g class="ui bl">
     <g id="certificate">
@@ -483,3 +483,4 @@
   <script type="application/json" id="data" />
   <script type="text/javascript" href="main.js" />
 </svg>
+
