@@ -176,9 +176,9 @@
     <g id="hud">
       <rect x="0" y="0" width="450" height="30" stroke-width="0" fill="url(#menufade)" pointer-events="none" />
       <text id="time" x="10" y="20">--:--</text>
-      <text id="new-game" class="button noscript-hidden" x="80" y="20">New Game</text>
-      <text id="save-game" class="button noscript-hidden" x="180" y="20">Save Progress</text>
-      <text class="noscript-warn" x="80" y="20">Please open in browser to play!</text>
+      <text id="new-game" class="button noscript-hidden" x="100" y="20">New Game</text>
+      <text id="save-game" class="button noscript-hidden" x="200" y="20">Save Progress</text>
+      <text class="noscript-warn" x="100" y="20">Please open in browser to play!</text>
   </g>
   </g>
   <g class="ui bl">
@@ -186,7 +186,7 @@
       <rect x="10" y="-250" width="320" height="240" stroke="#0008" stroke-width="0.1" fill="#FFF" filter="url(#shadow)" />
       <rect x="30" y="-230" width="280" height="200" stroke="#060" fill="#0000" stroke-width="0.5" />
       <rect x="33" y="-227" width="274" height="194" stroke="#060" fill="#0000" stroke-width="0.5" />
-      <text x="170" y="-190" text-anchor="middle" class="h1">Congratulations!</text>
+      <text x="170" y="-190" text-anchor="middle" class="h1">Congratulations🎉🎉🎉</text>
       <text x="170" y="-170" text-anchor="middle">You have solved the puzzle in</text>
       <text x="170" y="-150" text-anchor="middle" id="time-used">--:--</text>
       <text x="170" y="-120" text-anchor="middle">Puzzle Size</text>
@@ -483,4 +483,5 @@
   <script type="application/json" id="data" />
   <script type="text/javascript" href="main.js" />
 </svg>
+
 
