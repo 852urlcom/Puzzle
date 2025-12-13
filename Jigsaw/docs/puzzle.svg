@@ -472,7 +472,7 @@
     .pzoverlay {
       stroke: #000;
       fill: #0008;
-      opacity: 0.5;
+      opacity: 0;
       filter: url(#bevel);
     }
     #ms>mask>use {
@@ -483,6 +483,7 @@
   <script type="application/json" id="data" />
   <script type="text/javascript" href="main.js" />
 </svg>
+
 
 
 
