@@ -219,9 +219,9 @@
             <p></p>
             <div>
               <label>Puzzle Size (Width x Height) : </label><br/>
-              <input type="number" class="size-input" id="col-input" size="3" min="2" value="2" disabled="disabled" />
+              <input type="number" class="size-input" id="col-input" size="3" min="2" value="2" disabled="disabled" max="20" onkeyup="if(parseInt(this.value)>20){ this.value =20; return false;}" />
               <label>×</label>
-              <input type="number" class="size-input" id="row-input" size="3" min="2" value="2" disabled="disabled" /><br />
+              <input type="number" class="size-input" id="row-input" size="3" min="2" value="2" disabled="disabled" max="20" onkeyup="if(parseInt(this.value)>20){ this.value =20; return false;}" /><br />
               <span id="size-count" />
             </div>
             <div>
@@ -483,6 +483,7 @@
   <script type="application/json" id="data" />
   <script type="text/javascript" href="main.js" />
 </svg>
+
 
 
 
